@@ -8,6 +8,12 @@ public class AhyoshinApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AhyoshinApplication.class, args);
+
+        siemson();
+    }
+
+    public static void siemson() {
+        System.out.println("Siemson");
     }
 
 }
