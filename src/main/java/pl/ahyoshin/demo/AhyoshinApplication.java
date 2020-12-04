@@ -9,6 +9,12 @@ public class AhyoshinApplication {
     public static void main(String[] args) {
         SpringApplication.run(AhyoshinApplication.class, args);
         //cokolwiek
+        //inne cokolwiek
+        elo();
+    }
+
+    static void elo(){
+        System.out.println("elo");
     }
 
 }
