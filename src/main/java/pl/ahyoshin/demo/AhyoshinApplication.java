@@ -8,13 +8,11 @@ public class AhyoshinApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AhyoshinApplication.class, args);
-        //cokolwiek
-        //inne cokolwiek
-        elo();
+        siemson();
     }
 
-    static void elo(){
-        System.out.println("elo");
+    public static void siemson() {
+        System.out.println("Siemson");
     }
 
 }
