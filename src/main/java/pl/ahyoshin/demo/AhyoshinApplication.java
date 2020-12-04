@@ -13,7 +13,9 @@ public class AhyoshinApplication {
     }
 
     public static void siemson() {
-        System.out.println("Siemson");
+        System.out.println("Siemason");
     }
+
+
 
 }
