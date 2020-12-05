@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import pl.ahyoshin.demo.entities.UserEntity;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 @Repository
 public class UserRepository {
@@ -13,10 +14,12 @@ public class UserRepository {
         this.em = em;
     }
 
+    @Transactional
     public void saveUser(){
         var userEntity = new UserEntity();
         em.persist(userEntity);
     }
+
 
     public UserEntity findUserById(Long id){
         return em.createQuery("select ue from UserEntity ue where ue.id = :id", UserEntity.class)
