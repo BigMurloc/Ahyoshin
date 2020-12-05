@@ -14,4 +14,4 @@ databaseChangeLog:
         relativeToChangelogFile: true
         stripComments: true
         splitStatements: false
-        path: db.changelog/20201205_init.sql
+        path: db.changelog/20201205_add_user.sql
