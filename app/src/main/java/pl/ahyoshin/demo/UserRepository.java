@@ -2,6 +2,7 @@ package pl.ahyoshin.demo;
 
 import org.springframework.stereotype.Repository;
 import pl.ahyoshin.demo.entities.UserEntity;
+import pl.ahyoshin.demo.requests.RegisterRequest;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -15,8 +16,10 @@ public class UserRepository {
     }
 
     @Transactional
-    public void saveUser(){
+    public void saveUser(RegisterRequest registerRequest){
         var userEntity = new UserEntity();
+        userEntity.setUsername(registerRequest.getUsername());
+        userEntity.setPassword(registerRequest.getPassword());
         em.persist(userEntity);
     }
 
