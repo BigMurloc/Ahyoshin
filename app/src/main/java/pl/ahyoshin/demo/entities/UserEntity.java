@@ -22,7 +22,7 @@ public class UserEntity {
     private String username;
     private String password;
     @ElementCollection
-    @CollectionTable(name = "authorities", joinColumns = {@JoinColumn(name = "id")})
+    @CollectionTable(name = "authority", joinColumns = {@JoinColumn(name = "id")})
     @Column(name = "authority")
     private Set<String> authorities = new HashSet();
 
@@ -61,5 +61,4 @@ public class UserEntity {
         this.authorities = authorities;
     }
 }
-
 
