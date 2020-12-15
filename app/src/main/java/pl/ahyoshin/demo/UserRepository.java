@@ -35,6 +35,9 @@ public class UserRepository {
     }
 
     public UserEntity findUserByUsername(String username) {
-        return (UserEntity)this.em.createQuery("select ue from UserEntity ue where ue.username = :username", UserEntity.class).setParameter("username", username).getSingleResult();
+        return (UserEntity) this.em
+        .createQuery("select ue from UserEntity ue where ue.username = :username", UserEntity.class)
+        .setParameter("username", username)
+        .getSingleResult();
     }
 }
