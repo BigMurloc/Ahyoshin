@@ -19,12 +19,12 @@ public class AuthenticationService {
 
     public boolean login(String username, String password) {
         UserEntity userDB = this.userRepository.findUserByUsername(username);
-        if (userDB.getUsername().equals(username) && this.passwordEncoder.matches(password, userDB.getPassword())) {
+        if (this.passwordEncoder.matches(password, userDB.getPassword())) {
             SecurityContextHolder.getContext().setAuthentication(new AppAuthentication(userDB));
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }
 

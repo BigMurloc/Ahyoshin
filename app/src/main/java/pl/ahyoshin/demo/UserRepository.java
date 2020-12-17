@@ -26,7 +26,7 @@ public class UserRepository {
         userEntity.setPassword(password);
         userEntity.setAuthorities(authorities);
         this.em.persist(userEntity);
-        if (userEntity.getId() == 1L) {
+        if (userEntity.getId() == 1) {
             authorities.add("Admin");
         } else {
             authorities.add("default");
@@ -35,6 +35,7 @@ public class UserRepository {
     }
 
     public UserEntity findUserByUsername(String username) {
-        return (UserEntity)this.em.createQuery("select ue from UserEntity ue where ue.username = :username", UserEntity.class).setParameter("username", username).getSingleResult();
+        return this.em.createQuery("select ue from UserEntity ue where ue.username = :username", UserEntity.class)
+                .setParameter("username", username).getSingleResult();
     }
 }
