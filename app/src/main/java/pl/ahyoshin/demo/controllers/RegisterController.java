@@ -23,5 +23,6 @@ public class RegisterController {
 //        AuthenticationEntity authenticationEntity = new AuthenticationEntity();
 //        authenticationEntity.setAuthority("Admin");
         this.userRepository.saveUser(registerRequest, authorities);
+        
     }
 }
