@@ -1,34 +1,41 @@
 package pl.ahyoshin.demo;
 
+import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import pl.ahyoshin.demo.entities.UserEntity;
 import pl.ahyoshin.demo.requests.RegisterRequest;
 
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
-
 @Repository
 public class UserRepository {
     private final EntityManager em;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public UserRepository(EntityManager em) {
         this.em = em;
     }
 
     @Transactional
-    public void saveUser(RegisterRequest registerRequest){
-        var userEntity = new UserEntity();
+    public void saveUser(RegisterRequest registerRequest, Set<String> authorities) {
+        UserEntity userEntity = new UserEntity();
         userEntity.setUsername(registerRequest.getUsername());
-        userEntity.setPassword(registerRequest.getPassword());
-        em.persist(userEntity);
+        String password = this.passwordEncoder.encode(registerRequest.getPassword());
+        userEntity.setPassword(password);
+        userEntity.setAuthorities(authorities);
+        this.em.persist(userEntity);
+        if (userEntity.getId() == 1) {
+            authorities.add("Admin");
+        } else {
+            authorities.add("default");
+        }
+
     }
 
-
-    public UserEntity findUserById(Long id){
-        return em.createQuery("select ue from UserEntity ue where ue.id = :id", UserEntity.class)
-                .setParameter("id", id)
-                .getSingleResult();
+    public UserEntity findUserByUsername(String username) {
+        return this.em.createQuery("select ue from UserEntity ue where ue.username = :username", UserEntity.class)
+                .setParameter("username", username).getSingleResult();
     }
-
-
 }
