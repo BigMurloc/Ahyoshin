@@ -1,4 +1,4 @@
-CREATE TABLE authorities(
+CREATE TABLE authority(
 authorities_id BIGSERIAL NOT NULL PRIMARY KEY,
 app_user_id BIGSERIAL NOT NULL,
 authority VARCHAR NOT NULL,

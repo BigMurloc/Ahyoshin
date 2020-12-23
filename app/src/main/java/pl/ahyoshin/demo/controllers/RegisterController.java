@@ -19,10 +19,6 @@ public class RegisterController {
 
     @PostMapping({"/register"})
     public void register(@RequestBody RegisterRequest registerRequest) {
-        Set<String> authorities = new HashSet();
-//        AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-//        authenticationEntity.setAuthority("Admin");
-        this.userRepository.saveUser(registerRequest, authorities);
-        
+        userRepository.saveUser(registerRequest);
     }
 }

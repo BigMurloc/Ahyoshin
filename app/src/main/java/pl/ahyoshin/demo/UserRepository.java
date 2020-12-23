@@ -1,5 +1,6 @@
 package pl.ahyoshin.demo;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -19,17 +20,18 @@ public class UserRepository {
     }
 
     @Transactional
-    public void saveUser(RegisterRequest registerRequest, Set<String> authorities) {
+    public void saveUser(RegisterRequest registerRequest) {
+        Set<String> authority = new HashSet<>();
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(registerRequest.getUsername());
-        String password = this.passwordEncoder.encode(registerRequest.getPassword());
+        String password = passwordEncoder.encode(registerRequest.getPassword());
         userEntity.setPassword(password);
-        userEntity.setAuthorities(authorities);
+        userEntity.setAuthority(authority);
         this.em.persist(userEntity);
         if (userEntity.getId() == 1) {
-            authorities.add("Admin");
+            authority.add("Admin");
         } else {
-            authorities.add("default");
+            authority.add("default");
         }
 
     }

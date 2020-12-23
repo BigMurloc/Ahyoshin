@@ -22,9 +22,9 @@ public class UserEntity {
     private String username;
     private String password;
     @ElementCollection
-    @CollectionTable(name = "authorities", joinColumns = {@JoinColumn(name = "id")})
+    @CollectionTable(name = "authority", joinColumns = {@JoinColumn(name = "id")})
     @Column(name = "authority")
-    private Set<String> authorities = new HashSet();
+    private Set<String> authority;
 
     public UserEntity() {
     }
@@ -53,12 +53,12 @@ public class UserEntity {
         this.username = username;
     }
 
-    public Set<String> getAuthorities() {
-        return this.authorities;
+    public Set<String> getAuthority() {
+        return this.authority;
     }
 
-    public void setAuthorities(Set<String> authorities) {
-        this.authorities = authorities;
+    public void setAuthority(Set<String> authority) {
+        this.authority = authority;
     }
 }
 

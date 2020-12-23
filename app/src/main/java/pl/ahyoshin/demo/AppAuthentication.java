@@ -12,13 +12,13 @@ public class AppAuthentication extends AbstractAuthenticationToken {
     private final UserEntity authenticatedUser;
 
     public AppAuthentication(UserEntity authenticatedUser) {
-        super(toGrantedAuthorities(authenticatedUser.getAuthorities()));
+        super(toGrantedAuthorities(authenticatedUser.getAuthority()));
         this.authenticatedUser = authenticatedUser;
-        this.setAuthenticated(true);
+        setAuthenticated(true);
     }
 
-    private static Collection<? extends GrantedAuthority> toGrantedAuthorities(Set<String> authorities) {
-        return (Collection)authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
+    private static Collection<? extends GrantedAuthority> toGrantedAuthorities(Set<String> authority) {
+        return authority.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
     }
 
     public Object getCredentials() {

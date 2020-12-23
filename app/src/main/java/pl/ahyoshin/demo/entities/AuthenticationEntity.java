@@ -9,15 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "authorities")
+@Table(name = "authority")
 public class AuthenticationEntity {
     @Id
-    @Column(name = "authorities_id")
+    @Column(name = "authority_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authority;
 
     public AuthenticationEntity() {
+
     }
 
     public Long getId() {
